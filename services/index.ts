@@ -7,7 +7,12 @@ export {
 } from './aiService';
 
 // Config - 配置管理
-export { getAIConfig, saveAIConfig } from './config';
+export {
+  getAIConfig,
+  saveAIConfig,
+  getSystemInstruction,
+  saveSystemInstruction
+} from './config';
 
 // Utils - 工具函数
 export { cleanJsonString, containsChinese } from './utils';

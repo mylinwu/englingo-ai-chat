@@ -2,6 +2,8 @@ import { AIConfig } from '../types';
 
 /** localStorage 中 AI 配置的键名 */
 export const AI_CONFIG_STORAGE_KEY = 'ai-config';
+/** localStorage 中 System Instruction 的键名 */
+export const SYSTEM_INSTRUCTION_STORAGE_KEY = 'system-instruction';
 
 /** 默认 AI 配置（OpenRouter + Gemini 轻量模型） */
 export const DEFAULT_CONFIG: AIConfig = {
@@ -40,4 +42,18 @@ export const getAIConfig = (): AIConfig => {
  */
 export const saveAIConfig = (config: AIConfig): void => {
   localStorage.setItem(AI_CONFIG_STORAGE_KEY, JSON.stringify(config));
+};
+
+/**
+ * 从 localStorage 获取 System Instruction
+ */
+export const getSystemInstruction = (): string | null => {
+  return localStorage.getItem(SYSTEM_INSTRUCTION_STORAGE_KEY);
+};
+
+/**
+ * 保存 System Instruction 到 localStorage
+ */
+export const saveSystemInstruction = (instruction: string): void => {
+  localStorage.setItem(SYSTEM_INSTRUCTION_STORAGE_KEY, instruction);
 };
