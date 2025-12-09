@@ -11,7 +11,12 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [react()],
       define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+        // OpenAI 兼容 API 配置
+        'process.env.OPENAI_BASE_URL': JSON.stringify(env.OPENAI_BASE_URL || 'https://api.openai.com/v1'),
+        'process.env.OPENAI_API_KEY': JSON.stringify(env.OPENAI_API_KEY || ''),
+        'process.env.OPENAI_MODEL': JSON.stringify(env.OPENAI_MODEL || 'gpt-4o-mini'),
+        // 保留旧配置以兼容
+        'process.env.API_KEY': JSON.stringify(env.OPENAI_API_KEY || env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
       },
       resolve: {

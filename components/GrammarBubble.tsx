@@ -5,23 +5,25 @@ interface GrammarBubbleProps {
   segment: AnalysisSegment;
 }
 
+/** 语法成分颜色映射 */
+const GRAMMAR_COLOR_MAP: Record<GrammarType, string> = {
+  [GrammarType.SUBJECT]: 'text-rose-900 bg-rose-200 border-rose-200 hover:bg-rose-200',      // 主语 - 柔和珊瑚红
+  [GrammarType.PREDICATE]: 'text-amber-900 bg-amber-100 border-amber-200 hover:bg-amber-200', // 谓语 - 奶油杏色
+  [GrammarType.OBJECT]: 'text-sky-900 bg-sky-100 border-sky-200 hover:bg-sky-200',           // 宾语 - 天空蓝
+  [GrammarType.ATTRIBUTE]: 'text-emerald-900 bg-emerald-100 border-emerald-200 hover:bg-emerald-200', // 定语 - 薄荷绿
+  [GrammarType.ADVERBIAL]: 'text-violet-900 bg-violet-100 border-violet-200 hover:bg-violet-200',     // 状语 - 浅薰衣草紫
+  [GrammarType.COMPLEMENT]: 'text-pink-900 bg-pink-50 border-pink-200 hover:bg-pink-200',    // 补语 - 马卡龙粉
+  [GrammarType.OTHER]: 'text-slate-900 bg-slate-100 border-slate-200 hover:bg-slate-200',    // 其他 - 柔和中性灰
+};
+
+/** 默认颜色样式 */
+const DEFAULT_COLOR = GRAMMAR_COLOR_MAP[GrammarType.OTHER];
+
+/**
+ * 获取语法成分对应的颜色类名
+ */
 const getColorClasses = (type: GrammarType): string => {
-  switch (type) {
-    case GrammarType.SUBJECT: // 主语 - Red
-      return 'text-red-900 bg-red-100 border-red-300 hover:bg-red-200';
-    case GrammarType.PREDICATE: // 谓语 - Amber (Yellow)
-      return 'text-amber-900 bg-amber-100 border-amber-300 hover:bg-amber-200';
-    case GrammarType.OBJECT: // 宾语 - Blue
-      return 'text-blue-900 bg-blue-100 border-blue-300 hover:bg-blue-200';
-    case GrammarType.ATTRIBUTE: // 定语 - Emerald (Green)
-      return 'text-emerald-900 bg-emerald-100 border-emerald-300 hover:bg-emerald-200';
-    case GrammarType.ADVERBIAL: // 状语 - Violet (Purple)
-      return 'text-violet-900 bg-violet-100 border-violet-300 hover:bg-violet-200';
-    case GrammarType.COMPLEMENT: // 补语 - Pink (Distinct from Red/Purple)
-      return 'text-pink-900 bg-pink-100 border-pink-300 hover:bg-pink-200';
-    default: // Other - Slate
-      return 'text-slate-700 bg-slate-100 border-slate-300 hover:bg-slate-200';
-  }
+  return GRAMMAR_COLOR_MAP[type] || DEFAULT_COLOR;
 };
 
 const GrammarBubble: React.FC<GrammarBubbleProps> = ({ segment }) => {

@@ -34,3 +34,9 @@ export interface ChatConfig {
   systemInstruction: string;
   apiKey: string;
 }
+
+export interface AIConfig {
+  baseURL: string;
+  apiKey: string;
+  model: string;
+}

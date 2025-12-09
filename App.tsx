@@ -3,16 +3,33 @@ import { Settings } from 'lucide-react';
 import MessageList from './components/MessageList';
 import InputArea from './components/InputArea';
 import SettingsModal from './components/SettingsModal';
+import { ToastContainer, useToast } from './components/Toast';
+import { AlertDialog } from './components/Alert';
 import { Message } from './types';
-import { translateTextToEnglish, generateChatResponse, analyzeText } from './services/geminiService';
+import { translateTextToEnglish, generateChatResponse, analyzeText } from './services/aiService';
 import { useChatStore } from './store/useChatStore';
 import { useConfigStore } from './store/useConfigStore';
 
 const App: React.FC = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [alertState, setAlertState] = useState<{
+    isOpen: boolean;
+    type: 'error' | 'warning' | 'info' | 'success';
+    title: string;
+    message: string;
+  }>({ isOpen: false, type: 'error', title: '', message: '' });
   
-  const { messages, addMessage, updateMessageAnalysis, setLoadingSource } = useChatStore();
+  const { toasts, addToast, removeToast } = useToast();
+  const { addMessage, updateMessageAnalysis, setLoadingSource } = useChatStore();
   const { systemInstruction } = useConfigStore();
+
+  const showAlert = (type: 'error' | 'warning' | 'info' | 'success', title: string, message: string) => {
+    setAlertState({ isOpen: true, type, title, message });
+  };
+
+  const closeAlert = () => {
+    setAlertState(prev => ({ ...prev, isOpen: false }));
+  };
 
   const handleSend = useCallback(async (text: string, isHidden: boolean = false) => {
     // 1. Start User Turn
@@ -91,7 +108,12 @@ const App: React.FC = () => {
 
     } catch (error) {
       console.error("Error in chat flow:", error);
-      alert("Something went wrong. Please check your API Key or try again.");
+      const errorMessage = error instanceof Error ? error.message : '未知错误';
+      if (errorMessage.includes('API Key')) {
+        showAlert('warning', '配置缺失', '请先在设置中配置 API Key');
+      } else {
+        showAlert('error', '请求失败', `发生错误: ${errorMessage}`);
+      }
       setLoadingSource(null);
     }
   }, [systemInstruction, addMessage, updateMessageAnalysis, setLoadingSource]);
@@ -148,6 +170,19 @@ const App: React.FC = () => {
       <SettingsModal 
         isOpen={isSettingsOpen} 
         onClose={() => setIsSettingsOpen(false)}
+        onToast={addToast}
+      />
+
+      {/* Toast Container */}
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
+
+      {/* Alert Dialog */}
+      <AlertDialog
+        isOpen={alertState.isOpen}
+        type={alertState.type}
+        title={alertState.title}
+        message={alertState.message}
+        onConfirm={closeAlert}
       />
     </div>
   );
