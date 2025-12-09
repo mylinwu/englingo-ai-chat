@@ -40,7 +40,7 @@ const MessageContent: React.FC<MessageContentProps> = ({ message }) => {
 
   // 分析中时显示原始文本
   return (
-    <div className="p-3 leading-relaxed">
+    <div className={`p-3 leading-relaxed ${isUser ? 'text-text-inverse' : 'text-text'}`}>
       <span className="font-medium text-lg">{message.text}</span>
       <div className="mt-2 flex items-center gap-2 opacity-50">
         <span className="text-xs">Analyzing...</span>

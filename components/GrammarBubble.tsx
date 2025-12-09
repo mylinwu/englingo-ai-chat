@@ -31,7 +31,7 @@ const GrammarBubble: React.FC<GrammarBubbleProps> = ({ segment }) => {
   const colorClass = getColorClasses(segment.ty);
   const tooltipId = useId();
   const { activeTooltipId, setActiveTooltipId } = useTooltip();
-  
+
   const isActive = activeTooltipId === tooltipId;
 
   // 处理点击/触摸事件（移动端）
@@ -42,16 +42,16 @@ const GrammarBubble: React.FC<GrammarBubbleProps> = ({ segment }) => {
   }, [isActive, tooltipId, setActiveTooltipId]);
 
   return (
-    <span 
-      className={`group relative inline-block cursor-help border-b-2 border-dotted mx-0.5 my-0.5 px-1 rounded transition-colors duration-200 ${colorClass}`}
+    <span
+      className={`group relative inline-block cursor-help border-b-2 border-dotted mx-0.5 my-0.5 px-1 rounded transition-colors duration-200 leading-none ${colorClass}`}
       onClick={handleClick}
       data-tooltip-trigger
     >
       {/* The Text */}
       <span className="font-medium text-lg">{segment.t}</span>
-      
+
       {/* The Tooltip (Bubble) - 支持 hover（桌面端）和点击（移动端） */}
-      <span 
+      <span
         className={`pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-[240px] px-3 py-2 bg-gray-800/95 backdrop-blur-sm text-white text-xs rounded transition-opacity z-50 shadow-xl ${
           isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
         }`}
@@ -71,7 +71,7 @@ const GrammarBubble: React.FC<GrammarBubbleProps> = ({ segment }) => {
             </>
           )}
         </div>
-        
+
         {/* Triangle arrow */}
         <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800/95"></span>
       </span>
