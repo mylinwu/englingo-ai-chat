@@ -27,31 +27,31 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   }, [toast.id, onRemove]);
 
   const icons = {
-    success: <CheckCircle size={18} className="text-success" />,
-    error: <XCircle size={18} className="text-error" />,
-    info: <Info size={18} className="text-info" />,
+    success: <CheckCircle size={18} className="text-white" />,
+    error: <XCircle size={18} className="text-white" />,
+    info: <Info size={18} className="text-white" />,
   };
 
   const bgColors = {
-    success: 'bg-success-light border-success/20',
-    error: 'bg-error-light border-error/20',
-    info: 'bg-info-light border-info/20',
+    success: 'bg-success/90 border-success/20',
+    error: 'bg-error/90 border-error/20',
+    info: 'bg-info/90 border-info/20',
   };
 
   return (
     <div
-      className={`flex items-center gap-3 px-4 py-3 bg-background-elevated rounded-xl shadow-lg border ${bgColors[toast.type]} transition-all duration-300 ${
+      className={`flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border ${bgColors[toast.type]} transition-all duration-300 ${
         isExiting ? 'opacity-0 translate-x-full' : 'opacity-100 translate-x-0'
       }`}
     >
       {icons[toast.type]}
-      <span className="text-sm text-text-secondary flex-1">{toast.message}</span>
+      <span className="text-sm text-white flex-1">{toast.message}</span>
       <button
         onClick={() => {
           setIsExiting(true);
           setTimeout(() => onRemove(toast.id), 300);
         }}
-        className="text-text-tertiary hover:text-text-secondary transition-colors"
+        className="text-white/80 hover:text-white transition-colors"
       >
         <X size={16} />
       </button>
@@ -68,9 +68,11 @@ export const ToastContainer: React.FC<ToastContainerProps> = ({ toasts, onRemove
   if (toasts.length === 0) return null;
 
   return (
-    <div className="fixed top-4 right-4 z-[100] flex flex-col gap-2 max-w-sm">
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 w-full max-w-2xl items-center pointer-events-none px-4">
       {toasts.map((toast) => (
-        <ToastItem key={toast.id} toast={toast} onRemove={onRemove} />
+        <div key={toast.id} className="w-full max-w-sm pointer-events-auto">
+          <ToastItem toast={toast} onRemove={onRemove} />
+        </div>
       ))}
     </div>
   );
