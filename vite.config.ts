@@ -11,10 +11,10 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [react()],
       define: {
-        // OpenAI 兼容 API 配置
-        'process.env.OPENRPUTER_BASE_URL': JSON.stringify(env.OPENRPUTER_BASE_URL || 'https://api.openai.com/v1'),
-        'process.env.OPENRPUTER_API_KEY': JSON.stringify(env.OPENRPUTER_API_KEY || ''),
-        'process.env.OPENRPUTER_MODEL': JSON.stringify(env.OPENRPUTER_MODEL || 'gpt-4o-mini'),
+        // OpenAI 兼容 API 配置（仅透传 env，默认值由 services/config.ts 管理）
+        'process.env.OPENROUTER_BASE_URL': JSON.stringify(env.OPENROUTER_BASE_URL),
+        'process.env.OPENROUTER_API_KEY': JSON.stringify(env.OPENROUTER_API_KEY),
+        'process.env.OPENROUTER_MODEL': JSON.stringify(env.OPENROUTER_MODEL),
       },
       resolve: {
         alias: {

@@ -1,14 +1,21 @@
 import { AIConfig } from '../types';
 
 /** localStorage 中 AI 配置的键名 */
-const AI_CONFIG_STORAGE_KEY = 'ai-config';
+export const AI_CONFIG_STORAGE_KEY = 'ai-config';
 
-/** 默认 AI 配置 */
-const DEFAULT_CONFIG: AIConfig = {
+/** 默认 AI 配置（OpenRouter + Gemini 轻量模型） */
+export const DEFAULT_CONFIG: AIConfig = {
   baseURL: 'https://openrouter.ai/api/v1',
   apiKey: '',
-  model: 'openai/gpt-4o-mini',
+  model: 'google/gemini-2.5-flash-lite',
 };
+
+/** 从环境变量读取配置 */
+const getEnvConfig = (): AIConfig => ({
+  baseURL: process.env.OPENROUTER_BASE_URL || DEFAULT_CONFIG.baseURL,
+  apiKey: process.env.OPENROUTER_API_KEY || DEFAULT_CONFIG.apiKey,
+  model: process.env.OPENROUTER_MODEL || DEFAULT_CONFIG.model,
+});
 
 /**
  * 从 localStorage 或环境变量获取 AI 配置
@@ -24,12 +31,8 @@ export const getAIConfig = (): AIConfig => {
     }
   }
 
-  // 使用环境变量或默认值
-  return {
-    baseURL: process.env.OPENRPUTER_BASE_URL || DEFAULT_CONFIG.baseURL,
-    apiKey: process.env.OPENRPUTER_API_KEY || DEFAULT_CONFIG.apiKey,
-    model: process.env.OPENRPUTER_MODEL || DEFAULT_CONFIG.model,
-  };
+  // 环境变量或默认值
+  return getEnvConfig();
 };
 
 /**
