@@ -142,15 +142,15 @@ const App: React.FC = () => {
   }, [handleSend]);
 
   return (
-    <div className="flex flex-col h-screen bg-[#ededed] font-sans">
+    <div className="flex flex-col h-screen bg-background font-sans">
       {/* Header - WeUIish style */}
-      <header className="flex-none bg-[#ededed] border-b border-slate-300/50 px-4 py-3 flex items-center justify-between z-10">
-        <div className="flex items-center gap-2 text-slate-900">
+      <header className="flex-none bg-background border-b border-border-light px-4 py-3 flex items-center justify-between z-10">
+        <div className="flex items-center gap-2 text-text">
           <span className="font-medium text-lg tracking-tight">EngLingo AI</span>
         </div>
         <button 
           onClick={() => setIsSettingsOpen(true)}
-          className="p-2 text-slate-700 hover:bg-slate-200/50 rounded-full transition-colors"
+          className="p-2 text-text-secondary hover:bg-background-secondary rounded-full transition-colors"
         >
           <Settings size={20} />
         </button>

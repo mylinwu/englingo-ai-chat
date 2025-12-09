@@ -10,8 +10,8 @@ interface SendButtonProps {
  */
 const SendButton: React.FC<SendButtonProps> = ({ disabled }) => {
   const baseClass = 'w-[40px] h-[40px] rounded-[6px] transition-colors flex items-center justify-center';
-  const activeClass = 'bg-[#07c160] text-white hover:bg-[#06ad56]';
-  const disabledClass = 'bg-slate-200 text-slate-400 cursor-not-allowed';
+  const activeClass = 'bg-primary text-text-inverse hover:bg-primary-hover';
+  const disabledClass = 'bg-background-secondary text-text-tertiary cursor-not-allowed';
 
   return (
     <button

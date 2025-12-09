@@ -12,12 +12,12 @@ interface MessageBubbleProps {
  */
 const getBubbleClassName = (isUser: boolean): string => {
   const baseClass = 'relative shadow-sm rounded-[6px] text-base';
-  const bgClass = isUser ? 'bg-[#95EC69]' : 'bg-white';
+  const bgClass = isUser ? 'bg-bubble-user' : 'bg-bubble-ai';
   
-  // WeUI 风格的三角箭头
+  // WeUI 风格的三角箭头 - 使用 CSS 变量
   const arrowClass = isUser
-    ? "before:right-[-6px] before:border-l-[#95EC69] before:border-r-0 before:border-y-transparent before:border-l-[6px] before:border-y-[6px]"
-    : "before:left-[-6px] before:border-r-white before:border-l-0 before:border-y-transparent before:border-r-[6px] before:border-y-[6px]";
+    ? "before:right-[-6px] before:border-l-bubble-user before:border-r-0 before:border-y-transparent before:border-l-[6px] before:border-y-[6px]"
+    : "before:left-[-6px] before:border-r-bubble-ai before:border-l-0 before:border-y-transparent before:border-r-[6px] before:border-y-[6px]";
 
   return `${baseClass} ${bgClass} before:content-[''] before:absolute before:top-3 ${arrowClass}`;
 };

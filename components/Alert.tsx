@@ -21,31 +21,31 @@ const Alert: React.FC<AlertProps> = ({
   const configs = {
     success: {
       icon: <CheckCircle size={20} />,
-      bg: 'bg-[#07c160]/10',
-      border: 'border-[#07c160]/20',
-      iconColor: 'text-[#07c160]',
-      titleColor: 'text-[#07c160]',
+      bg: 'bg-success-light',
+      border: 'border-success/20',
+      iconColor: 'text-success',
+      titleColor: 'text-success',
     },
     error: {
       icon: <XCircle size={20} />,
-      bg: 'bg-red-50',
-      border: 'border-red-200',
-      iconColor: 'text-red-500',
-      titleColor: 'text-red-700',
+      bg: 'bg-error-light',
+      border: 'border-error/20',
+      iconColor: 'text-error',
+      titleColor: 'text-error',
     },
     warning: {
       icon: <AlertCircle size={20} />,
-      bg: 'bg-amber-50',
-      border: 'border-amber-200',
-      iconColor: 'text-amber-500',
-      titleColor: 'text-amber-700',
+      bg: 'bg-warning-light',
+      border: 'border-warning/20',
+      iconColor: 'text-warning',
+      titleColor: 'text-warning',
     },
     info: {
       icon: <Info size={20} />,
-      bg: 'bg-blue-50',
-      border: 'border-blue-200',
-      iconColor: 'text-blue-500',
-      titleColor: 'text-blue-700',
+      bg: 'bg-info-light',
+      border: 'border-info/20',
+      iconColor: 'text-info',
+      titleColor: 'text-info',
     },
   };
 
@@ -63,7 +63,7 @@ const Alert: React.FC<AlertProps> = ({
               {title}
             </h4>
           )}
-          <p className="text-sm text-slate-600">{message}</p>
+          <p className="text-sm text-text-secondary">{message}</p>
           {actions && (
             <div className="mt-3 flex gap-2">
               {actions}
@@ -73,7 +73,7 @@ const Alert: React.FC<AlertProps> = ({
         {onClose && (
           <button
             onClick={onClose}
-            className="flex-shrink-0 text-slate-400 hover:text-slate-600 transition-colors"
+            className="flex-shrink-0 text-text-tertiary hover:text-text-secondary transition-colors"
           >
             <X size={18} />
           </button>
@@ -110,50 +110,50 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
   const configs = {
     success: {
       icon: <CheckCircle size={48} />,
-      iconColor: 'text-[#07c160]',
-      buttonBg: 'bg-[#07c160] hover:bg-[#06ad56]',
+      iconColor: 'text-success',
+      buttonBg: 'bg-success hover:bg-success/90',
     },
     error: {
       icon: <XCircle size={48} />,
-      iconColor: 'text-red-500',
-      buttonBg: 'bg-red-500 hover:bg-red-600',
+      iconColor: 'text-error',
+      buttonBg: 'bg-error hover:bg-error/90',
     },
     warning: {
       icon: <AlertCircle size={48} />,
-      iconColor: 'text-amber-500',
-      buttonBg: 'bg-amber-500 hover:bg-amber-600',
+      iconColor: 'text-warning',
+      buttonBg: 'bg-warning hover:bg-warning/90',
     },
     info: {
       icon: <Info size={48} />,
-      iconColor: 'text-blue-500',
-      buttonBg: 'bg-blue-500 hover:bg-blue-600',
+      iconColor: 'text-info',
+      buttonBg: 'bg-info hover:bg-info/90',
     },
   };
 
   const config = configs[type];
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+    <div className="modal-overlay z-[60]">
+      <div className="modal-content max-w-sm">
         <div className="p-6 text-center">
           <div className={`inline-flex mb-4 ${config.iconColor}`}>
             {config.icon}
           </div>
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">{title}</h3>
-          <p className="text-sm text-slate-600">{message}</p>
+          <h3 className="text-lg font-semibold text-text mb-2">{title}</h3>
+          <p className="text-sm text-text-secondary">{message}</p>
         </div>
-        <div className="p-4 bg-slate-50 border-t border-slate-100 flex gap-3 justify-center">
+        <div className="p-4 bg-background-secondary border-t border-border flex gap-3 justify-center">
           {cancelText && onCancel && (
             <button
               onClick={onCancel}
-              className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
+              className="btn-secondary"
             >
               {cancelText}
             </button>
           )}
           <button
             onClick={onConfirm}
-            className={`px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors ${config.buttonBg}`}
+            className={`px-4 py-2 text-sm font-medium text-text-inverse rounded-lg transition-colors ${config.buttonBg}`}
           >
             {confirmText}
           </button>

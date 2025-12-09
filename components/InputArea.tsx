@@ -31,7 +31,7 @@ const InputArea: React.FC<InputAreaProps> = ({ onSend, onNewTopic, onContinue })
   );
 
   return (
-    <div className="bg-[#f7f7f7] border-t border-[#dcdcdc] sticky bottom-0 z-20">
+    <div className="bg-background-secondary border-t border-border sticky bottom-0 z-20">
       <Toolbar
         onNewTopic={onNewTopic}
         onContinue={onContinue}
@@ -42,14 +42,14 @@ const InputArea: React.FC<InputAreaProps> = ({ onSend, onNewTopic, onContinue })
       <div className="px-3 py-2">
         <form onSubmit={handleSubmit} className="flex items-center gap-2 m-0">
           {/* 输入框容器 */}
-          <div className="flex-1 bg-white rounded-[6px] h-[40px] flex items-center shadow-sm">
+          <div className="flex-1 bg-background-elevated rounded-[6px] h-[40px] flex items-center shadow-sm">
             <input
               type="text"
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Type in English or Chinese..."
               disabled={isLoading}
-              className="w-full px-3 py-2 bg-transparent border-none text-slate-800 placeholder:text-slate-400 focus:outline-none text-base h-full"
+              className="w-full px-3 py-2 bg-transparent border-none text-text placeholder:text-text-tertiary focus:outline-none text-base h-full"
             />
           </div>
 

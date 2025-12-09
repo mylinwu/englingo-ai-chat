@@ -27,31 +27,31 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   }, [toast.id, onRemove]);
 
   const icons = {
-    success: <CheckCircle size={18} className="text-[#07c160]" />,
-    error: <XCircle size={18} className="text-red-500" />,
-    info: <Info size={18} className="text-blue-500" />,
+    success: <CheckCircle size={18} className="text-success" />,
+    error: <XCircle size={18} className="text-error" />,
+    info: <Info size={18} className="text-info" />,
   };
 
   const bgColors = {
-    success: 'bg-[#07c160]/10 border-[#07c160]/20',
-    error: 'bg-red-50 border-red-200',
-    info: 'bg-blue-50 border-blue-200',
+    success: 'bg-success-light border-success/20',
+    error: 'bg-error-light border-error/20',
+    info: 'bg-info-light border-info/20',
   };
 
   return (
     <div
-      className={`flex items-center gap-3 px-4 py-3 bg-white rounded-xl shadow-lg border ${bgColors[toast.type]} transition-all duration-300 ${
+      className={`flex items-center gap-3 px-4 py-3 bg-background-elevated rounded-xl shadow-lg border ${bgColors[toast.type]} transition-all duration-300 ${
         isExiting ? 'opacity-0 translate-x-full' : 'opacity-100 translate-x-0'
       }`}
     >
       {icons[toast.type]}
-      <span className="text-sm text-slate-700 flex-1">{toast.message}</span>
+      <span className="text-sm text-text-secondary flex-1">{toast.message}</span>
       <button
         onClick={() => {
           setIsExiting(true);
           setTimeout(() => onRemove(toast.id), 300);
         }}
-        className="text-slate-400 hover:text-slate-600 transition-colors"
+        className="text-text-tertiary hover:text-text-secondary transition-colors"
       >
         <X size={16} />
       </button>

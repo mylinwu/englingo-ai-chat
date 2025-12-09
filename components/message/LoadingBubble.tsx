@@ -10,7 +10,7 @@ interface LoadingBubbleProps {
  */
 const LoadingDot: React.FC<{ delay: number; isUser: boolean }> = ({ delay, isUser }) => (
   <span
-    className={`w-1.5 h-1.5 rounded-full animate-bounce ${isUser ? 'bg-green-800/40' : 'bg-slate-400'}`}
+    className={`w-1.5 h-1.5 rounded-full animate-bounce ${isUser ? 'bg-text-inverse/40' : 'bg-text-tertiary'}`}
     style={{ animationDelay: `${delay}ms` }}
   />
 );
@@ -20,11 +20,11 @@ const LoadingDot: React.FC<{ delay: number; isUser: boolean }> = ({ delay, isUse
  */
 const getLoadingBubbleClassName = (isUser: boolean): string => {
   const baseClass = 'relative shadow-sm rounded-[6px] px-4 flex items-center gap-1.5 h-10';
-  const bgClass = isUser ? 'bg-[#95EC69]' : 'bg-white';
+  const bgClass = isUser ? 'bg-bubble-user' : 'bg-bubble-ai';
   
   const arrowClass = isUser
-    ? "before:right-[-6px] before:border-l-[#95EC69] before:border-r-0 before:border-y-transparent before:border-l-[6px] before:border-y-[6px]"
-    : "before:left-[-6px] before:border-r-white before:border-l-0 before:border-y-transparent before:border-r-[6px] before:border-y-[6px]";
+    ? "before:right-[-6px] before:border-l-bubble-user before:border-r-0 before:border-y-transparent before:border-l-[6px] before:border-y-[6px]"
+    : "before:left-[-6px] before:border-r-bubble-ai before:border-l-0 before:border-y-transparent before:border-r-[6px] before:border-y-[6px]";
 
   return `${baseClass} ${bgClass} before:content-[''] before:absolute before:top-3 ${arrowClass}`;
 };

@@ -18,7 +18,7 @@ const MessageContent: React.FC<MessageContentProps> = ({ message }) => {
     return (
       <div className="flex flex-col min-w-[200px]">
         {/* 英文分析区域 */}
-        <div className="p-3 leading-loose text-slate-900">
+        <div className="p-3 leading-loose text-text">
           {analysis.s.map((segment, idx) => (
             <React.Fragment key={idx}>
               <GrammarBubble segment={segment} />
@@ -28,10 +28,10 @@ const MessageContent: React.FC<MessageContentProps> = ({ message }) => {
         </div>
 
         {/* 分隔线 */}
-        <div className={`h-px w-full ${isUser ? 'bg-slate-900/10' : 'bg-slate-100'}`} />
+        <div className={`h-px w-full ${isUser ? 'bg-text/10' : 'bg-border'}`} />
 
         {/* 中文翻译区域 */}
-        <div className={`p-3 text-base ${isUser ? 'text-slate-700' : 'text-slate-500'}`}>
+        <div className={`p-3 text-base ${isUser ? 'text-text-secondary' : 'text-text-tertiary'}`}>
           {analysis.zh}
         </div>
       </div>

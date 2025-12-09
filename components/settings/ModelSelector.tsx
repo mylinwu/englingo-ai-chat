@@ -68,7 +68,7 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
 
   return (
     <div>
-      <label className="block text-sm font-medium text-slate-700 mb-1.5 flex items-center gap-1">
+      <label className="block text-sm font-medium text-text-secondary mb-1.5 flex items-center gap-1">
         <Bot size={14} />
         模型
       </label>
@@ -80,7 +80,7 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
             type="text"
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="w-full px-3 py-2 text-sm text-slate-800 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#07c160] focus:border-transparent outline-none bg-slate-50 pr-8"
+            className="input pr-8"
             placeholder="openai/gpt-4o-mini"
           />
 
@@ -88,7 +88,7 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
           {availableModels.length > 0 && (
             <button
               onClick={handleToggleDropdown}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-text-tertiary hover:text-text-secondary"
             >
               <ChevronDown
                 size={16}
@@ -99,18 +99,18 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
 
           {/* 下拉列表 */}
           {showDropdown && availableModels.length > 0 && (
-            <div className="absolute z-10 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden">
+            <div className="absolute z-10 w-full mt-1 bg-background-elevated border border-border rounded-lg shadow-lg overflow-hidden">
               {/* 搜索框 */}
-              <div className="p-2 border-b border-slate-100 sticky top-0 bg-white">
+              <div className="p-2 border-b border-border sticky top-0 bg-background-elevated">
                 <div className="relative">
-                  <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-text-tertiary" />
                   <input
                     ref={searchInputRef}
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="搜索模型..."
-                    className="w-full pl-8 pr-3 py-1.5 text-sm text-slate-800 border border-slate-200 rounded-md focus:ring-1 focus:ring-[#07c160] focus:border-[#07c160] outline-none bg-slate-50"
+                    className="w-full pl-8 pr-3 py-1.5 text-sm text-text bg-background-secondary border border-border rounded-md focus:ring-1 focus:ring-primary focus:border-primary outline-none"
                     onClick={(e) => e.stopPropagation()}
                   />
                 </div>
@@ -123,15 +123,15 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
                     <button
                       key={model}
                       onClick={() => handleSelectModel(model)}
-                      className={`w-full px-3 py-2 text-left text-sm hover:bg-slate-50 ${
-                        model === value ? 'bg-[#07c160]/10 text-[#07c160]' : 'text-slate-700'
+                      className={`w-full px-3 py-2 text-left text-sm hover:bg-background-secondary ${
+                        model === value ? 'bg-primary-light text-primary' : 'text-text-secondary'
                       }`}
                     >
                       {model}
                     </button>
                   ))
                 ) : (
-                  <div className="px-3 py-4 text-center text-sm text-slate-400">
+                  <div className="px-3 py-4 text-center text-sm text-text-tertiary">
                     未找到匹配的模型
                   </div>
                 )}
@@ -139,7 +139,7 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
 
               {/* 搜索结果计数 */}
               {searchQuery && (
-                <div className="px-3 py-1.5 text-xs text-slate-400 border-t border-slate-100 bg-slate-50">
+                <div className="px-3 py-1.5 text-xs text-text-tertiary border-t border-border bg-background-secondary">
                   找到 {filteredModels.length} / {availableModels.length} 个模型
                 </div>
               )}
@@ -151,14 +151,14 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({
         <button
           onClick={onFetchModels}
           disabled={isLoading}
-          className="px-3 py-2 text-sm text-slate-600 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors disabled:opacity-50 flex items-center gap-1"
+          className="px-3 py-2 text-sm text-text-secondary border border-border rounded-lg hover:bg-background-secondary transition-colors disabled:opacity-50 flex items-center gap-1"
         >
           <RefreshCw size={14} className={isLoading ? 'animate-spin' : ''} />
           获取
         </button>
       </div>
 
-      <p className="text-xs text-slate-500 mt-1">
+      <p className="text-xs text-text-tertiary mt-1">
         可手动输入或点击获取按钮加载可用模型
       </p>
     </div>
