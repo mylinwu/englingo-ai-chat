@@ -19,12 +19,12 @@ const FormField: React.FC<FormFieldProps> = ({
   children,
 }) => {
   const hintClassName = hintType === 'warning'
-    ? 'text-xs text-amber-600 mt-1'
-    : 'text-xs text-slate-500 mt-1';
+    ? 'text-xs text-warning mt-1'
+    : 'text-xs text-text-tertiary mt-1';
 
   return (
     <div>
-      <label className="block text-sm font-medium text-slate-700 mb-1.5 flex items-center gap-1">
+      <label className="text-sm font-medium text-text-secondary mb-1.5 flex items-center gap-1">
         {icon}
         {label}
       </label>

@@ -1,12 +1,26 @@
 {
   "name": "englingo-ai-chat",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "An intelligent English learning chat assistant with grammar analysis",
   "type": "module",
+  "license": "MIT",
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/englingo-ai-chat.git"
+  },
+  "keywords": [
+    "english-learning",
+    "ai-chat",
+    "grammar-analysis",
+    "react",
+    "typescript"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@openrouter/ai-sdk-provider": "^1.4.1",

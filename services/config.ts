@@ -26,9 +26,9 @@ export const getAIConfig = (): AIConfig => {
 
   // 使用环境变量或默认值
   return {
-    baseURL: process.env.OPENAI_BASE_URL || DEFAULT_CONFIG.baseURL,
-    apiKey: process.env.OPENAI_API_KEY || DEFAULT_CONFIG.apiKey,
-    model: process.env.OPENAI_MODEL || DEFAULT_CONFIG.model,
+    baseURL: process.env.OPENRPUTER_BASE_URL || DEFAULT_CONFIG.baseURL,
+    apiKey: process.env.OPENRPUTER_API_KEY || DEFAULT_CONFIG.apiKey,
+    model: process.env.OPENRPUTER_MODEL || DEFAULT_CONFIG.model,
   };
 };
 

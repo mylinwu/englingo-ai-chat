@@ -31,7 +31,7 @@ const MessageContent: React.FC<MessageContentProps> = ({ message }) => {
         <div className={`h-px w-full ${isUser ? 'bg-text/10' : 'bg-border'}`} />
 
         {/* 中文翻译区域 */}
-        <div className={`p-3 text-base ${isUser ? 'text-text-secondary' : 'text-text-tertiary'}`}>
+        <div className={`p-3 text-base ${isUser ? 'text-text-inverse' : 'text-text-tertiary'}`}>
           {analysis.zh}
         </div>
       </div>

@@ -23,9 +23,9 @@ const loadAIConfig = (): AIConfig => {
     }
   }
   return {
-    baseURL: process.env.OPENAI_BASE_URL || 'https://openrouter.ai/api/v1',
-    apiKey: process.env.OPENAI_API_KEY || '',
-    model: process.env.OPENAI_MODEL || 'openai/gpt-4o-mini',
+    baseURL: process.env.OPENRPUTER_BASE_URL || 'https://openrouter.ai/api/v1',
+    apiKey: process.env.OPENRPUTER_API_KEY || '',
+    model: process.env.OPENRPUTER_MODEL || 'openai/gpt-4o-mini',
   };
 };
 
