@@ -5,6 +5,7 @@ import InputArea from './components/InputArea';
 import SettingsModal from './components/SettingsModal';
 import { ToastContainer, useToast } from './components/Toast';
 import { AlertDialog } from './components/Alert';
+import { TooltipProvider } from './components/TooltipContext';
 import { Message } from './types';
 import { translateTextToEnglish, generateChatResponse, analyzeText } from './services/aiService';
 import { useChatStore } from './store/useChatStore';
@@ -142,6 +143,7 @@ const App: React.FC = () => {
   }, [handleSend]);
 
   return (
+    <TooltipProvider>
     <div className="flex flex-col h-screen bg-background font-sans">
       {/* Header - WeUIish style */}
       <header className="flex-none bg-background border-b border-border-light px-4 py-3 flex items-center justify-between z-10">
@@ -185,6 +187,7 @@ const App: React.FC = () => {
         onConfirm={closeAlert}
       />
     </div>
+    </TooltipProvider>
   );
 };
 
